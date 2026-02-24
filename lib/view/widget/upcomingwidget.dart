@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:movies_project_api/core/url_movie.dart';
 import 'package:movies_project_api/model/topbar_modell.dart';
 import 'package:movies_project_api/model/trending_model.dart';
+import 'package:movies_project_api/model/upcoming_model.dart';
 import 'package:movies_project_api/view/screen/trendingscreen.dart';
+import 'package:movies_project_api/view/screen/upcomingscreen.dart';
 
 
-class Trendingwidget extends StatelessWidget {
-  final List<TrendingModel> movies;
+class Upcomingwidget extends StatelessWidget {
+  final List<UpcomingModel> movies;
 
-  const Trendingwidget({
+  const Upcomingwidget({
     super.key,
     required this.movies,
   });
@@ -31,7 +33,7 @@ class Trendingwidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => MovieDetailsScreen(movie: data),
+                  builder: (_) => Upcomingscreen(movie: data),
                 ),
               );
             },

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:movies_project_api/core/url_movie.dart';
 import 'package:movies_project_api/model/topbar_modell.dart';
 import 'package:movies_project_api/model/trending_model.dart';
+import 'package:movies_project_api/model/tvshow_model.dart';
+import 'package:movies_project_api/model/upcoming_model.dart';
 import 'package:movies_project_api/view/screen/trendingscreen.dart';
+import 'package:movies_project_api/view/screen/tvshowscreen.dart';
+import 'package:movies_project_api/view/screen/upcomingscreen.dart';
 
 
-class Trendingwidget extends StatelessWidget {
-  final List<TrendingModel> movies;
+class Tvshowwidget extends StatelessWidget {
+  final List<TvshowModel> movies;
 
-  const Trendingwidget({
+  const Tvshowwidget({
     super.key,
     required this.movies,
   });
@@ -31,7 +35,7 @@ class Trendingwidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => MovieDetailsScreen(movie: data),
+                  builder: (_) => Tvshowscreen(movie: data),
                 ),
               );
             },

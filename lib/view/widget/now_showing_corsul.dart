@@ -22,7 +22,7 @@ class NowShowingCarousel extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 6 / 2,
               child: Image.network(
-                "${UrlMovie.imageBase}${movie.poster_path}",
+                "${Url.imageBaseUrl}${movie.poster_path}",
                 fit: BoxFit.cover,
               ),
             ),
