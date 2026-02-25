@@ -16,7 +16,7 @@ class NowShowingCarousel extends StatelessWidget {
         final movie = movies[index];
 
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 6),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(18),
             child: AspectRatio(

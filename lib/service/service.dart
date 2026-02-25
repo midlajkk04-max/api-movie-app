@@ -13,7 +13,7 @@ class MovieService {
   Dio dio = Dio();
 
   Future<List<TopbarModell>> fetchtopbarmovie() async {
-    final Response = await dio.get(Url.trending);
+    final Response = await dio.get(Url.topbar);
 
     if (Response.statusCode == 200 && Response.data != null) {
       final model = Topbar.fromjson(Response.data);

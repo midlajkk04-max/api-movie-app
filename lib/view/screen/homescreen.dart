@@ -33,104 +33,104 @@ class Homescreen extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 100),
-
-                const Text(
-                  "Now Showing",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Now Showing",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
-                FutureBuilder(
-                  future: service.fetchtopbarmovie(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return MovieListLoading();
-                    }
+                  FutureBuilder(
+                    future: service.fetchtopbarmovie(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return MovieListLoading();
+                      }
 
-                    final movies = snapshot.data ?? [];
-                    return NowShowingCarousel(movies: movies);
-                  },
-                ),
-
-                const SizedBox(height: 30),
-
-                const Text(
-                  "Trending Movies",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                      final movies = snapshot.data ?? [];
+                      return NowShowingCarousel(movies: movies);
+                    },
                   ),
-                ),
 
-                const SizedBox(height: 20),
+                  const SizedBox(height: 30),
 
-                FutureBuilder(
-                  future: service.fetchtrendingmovie(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return MovieListLoading();
-                    }
-
-                    final trendingMovies = snapshot.data ?? [];
-                    return Trendingwidget(movies: trendingMovies);
-                  },
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  "upcoming movies",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                  const Text(
+                    "Trending Movies",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                FutureBuilder(
-                  future: service.fetchupcomingmovie(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return MovieListLoading();
-                    }
 
-                    final upcomingmovies = snapshot.data ?? [];
-                    return Upcomingwidget(movies: upcomingmovies);
-                  },
-                ),
-                SizedBox(height: 30),
-                Text(
-                  "Tv shows",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(height: 20),
+
+                  FutureBuilder(
+                    future: service.fetchtrendingmovie(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return MovieListLoading();
+                      }
+
+                      final trendingMovies = snapshot.data ?? [];
+                      return Trendingwidget(movies: trendingMovies);
+                    },
                   ),
-                ),
-                SizedBox(height: 20,),
-                FutureBuilder(
-                  future: service.fetchtvshowmovie(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return MovieListLoading();
-                    }
+                  const SizedBox(height: 30),
+                  Text(
+                    "upcoming movies",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  FutureBuilder(
+                    future: service.fetchupcomingmovie(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return MovieListLoading();
+                      }
 
-                    final upcomingmovies = snapshot.data ?? [];
-                    return Tvshowwidget(movies: upcomingmovies);
-                  },
-                ),
-              ],
+                      final upcomingmovies = snapshot.data ?? [];
+                      return Upcomingwidget(movies: upcomingmovies);
+                    },
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    "Tv shows",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  FutureBuilder(
+                    future: service.fetchtvshowmovie(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return MovieListLoading();
+                      }
+
+                      final upcomingmovies = snapshot.data ?? [];
+                      return Tvshowwidget(movies: upcomingmovies);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
