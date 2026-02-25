@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies_project_api/controller/favorite_controller.dart';
 import 'package:movies_project_api/core/app_color.dart';
 import 'package:movies_project_api/core/favorite_storage.dart';
 import 'package:movies_project_api/core/url_movie.dart';
 import 'package:movies_project_api/model/favorite_trending_model.dart';
 import 'package:movies_project_api/model/trending_model.dart';
 import 'package:movies_project_api/view/screen/favoritescreen.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final TrendingModel movie;
@@ -113,7 +115,7 @@ class MovieDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                FavoriteStorage.add(
+                                context.read<FavoriteProvider>().add(
                                   FavoriteModel(
                                     title: movie.title ?? "",
                                     posterPath: movie.poster_path ?? "",

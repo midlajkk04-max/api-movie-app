@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_project_api/controller/favorite_controller.dart';
 import 'package:movies_project_api/core/app_color.dart';
 import 'package:movies_project_api/core/favorite_storage.dart';
 import 'package:movies_project_api/core/url_movie.dart';
@@ -6,6 +7,7 @@ import 'package:movies_project_api/model/favorite_trending_model.dart';
 import 'package:movies_project_api/model/trending_model.dart';
 import 'package:movies_project_api/model/tvshow_model.dart';
 import 'package:movies_project_api/view/screen/favoritescreen.dart';
+import 'package:provider/provider.dart';
 
 class Tvshowscreen extends StatelessWidget {
   final TvshowModel movie;
@@ -26,7 +28,6 @@ class Tvshowscreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-      
           SizedBox(
             width: double.infinity,
             height: height * 0.6,
@@ -36,7 +37,6 @@ class Tvshowscreen extends StatelessWidget {
             ),
           ),
 
-    
           Container(
             height: height * 0.6,
             decoration: const BoxDecoration(
@@ -67,7 +67,6 @@ class Tvshowscreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                
                       Text(
                         movie.title ?? "",
                         style: const TextStyle(
@@ -79,7 +78,6 @@ class Tvshowscreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
-              
                       Row(
                         children: [
                           const Icon(Icons.star, color: Colors.amber),
@@ -93,7 +91,6 @@ class Tvshowscreen extends StatelessWidget {
 
                       const SizedBox(height: 20),
 
-        
                       Row(
                         children: [
                           Expanded(
@@ -104,9 +101,7 @@ class Tvshowscreen extends StatelessWidget {
                                   vertical: 12,
                                 ),
                               ),
-                              onPressed: () {
-                            
-                              },
+                              onPressed: () {},
                               icon: const Icon(Icons.play_arrow),
                               label: const Text("Watch Now"),
                             ),
@@ -120,8 +115,8 @@ class Tvshowscreen extends StatelessWidget {
                                   vertical: 12,
                                 ),
                               ),
-                             onPressed: () {
-                                FavoriteStorage.add(
+                              onPressed: () {
+                                context.read<FavoriteProvider>().add(
                                   FavoriteModel(
                                     title: movie.title ?? "",
                                     posterPath: movie.poster_path ?? "",
@@ -151,7 +146,6 @@ class Tvshowscreen extends StatelessWidget {
 
                       const SizedBox(height: 25),
 
-                      
                       const Text(
                         "Overview",
                         style: TextStyle(
@@ -163,7 +157,6 @@ class Tvshowscreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
-              
                       Text(
                         movie.overview ?? "No description available",
                         style: const TextStyle(

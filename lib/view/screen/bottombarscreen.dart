@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:movies_project_api/controller/bottombar_controller.dart';
 import 'package:movies_project_api/view/screen/favoritescreen.dart';
+import 'package:movies_project_api/view/screen/homescreen.dart';
 import 'package:movies_project_api/view/screen/movieserch.dart';
-import 'homescreen.dart';
+import 'package:provider/provider.dart';
 
-
-class Bottombarscreen extends StatefulWidget {
+class Bottombarscreen extends StatelessWidget {
   const Bottombarscreen({super.key});
-
-  @override
-  State<Bottombarscreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<Bottombarscreen> {
-
-  int currentIndex = 0;
 
   final List<Widget> pages = const [
     Homescreen(),
@@ -24,34 +16,33 @@ class _MainScreenState extends State<Bottombarscreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[currentIndex],
-
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+    return Consumer<BottomNavProvider>(
+      builder: (context, nav, child) {
+        return Scaffold(
+          body: pages[nav.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.black,
+            selectedItemColor: Colors.red,
+            unselectedItemColor: Colors.grey,
+            currentIndex: nav.currentIndex,
+            onTap: nav.changeIndex,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: "Search",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: "Favorite",
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorite",
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
