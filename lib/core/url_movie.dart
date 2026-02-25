@@ -10,4 +10,4 @@ class Url {
 
   static const String tvShow = '$baseUrl/tv/airing_today?api_key=$apiKey';
   static const String searchMovie = "$baseUrl/search/movie";
-}
+} 

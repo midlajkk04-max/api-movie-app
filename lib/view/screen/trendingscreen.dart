@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_project_api/core/app_color.dart';
+import 'package:movies_project_api/core/favorite_storage.dart';
 import 'package:movies_project_api/core/url_movie.dart';
+import 'package:movies_project_api/model/favorite_trending_model.dart';
 import 'package:movies_project_api/model/trending_model.dart';
 import 'package:movies_project_api/view/screen/favoritescreen.dart';
 
@@ -23,7 +25,6 @@ class MovieDetailsScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-      
           SizedBox(
             width: double.infinity,
             height: height * 0.6,
@@ -33,7 +34,6 @@ class MovieDetailsScreen extends StatelessWidget {
             ),
           ),
 
-    
           Container(
             height: height * 0.6,
             decoration: const BoxDecoration(
@@ -64,7 +64,6 @@ class MovieDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-              
                       Text(
                         movie.title ?? "",
                         style: const TextStyle(
@@ -76,7 +75,6 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
-                
                       Row(
                         children: [
                           const Icon(Icons.star, color: Colors.amber),
@@ -90,7 +88,6 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 20),
 
-            
                       Row(
                         children: [
                           Expanded(
@@ -101,9 +98,7 @@ class MovieDetailsScreen extends StatelessWidget {
                                   vertical: 12,
                                 ),
                               ),
-                              onPressed: () {
-                            
-                              },
+                              onPressed: () {},
                               icon: const Icon(Icons.play_arrow),
                               label: const Text("Watch Now"),
                             ),
@@ -118,10 +113,18 @@ class MovieDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Favoritescreen(),
+                                FavoriteStorage.add(
+                                  FavoriteModel(
+                                    title: movie.title ?? "",
+                                    posterPath: movie.poster_path ?? "",
+                                  ),
+                                );
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "${movie.title} added to favorites",
+                                    ),
                                   ),
                                 );
                               },
@@ -140,7 +143,6 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 25),
 
-                
                       const Text(
                         "Overview",
                         style: TextStyle(
@@ -152,7 +154,6 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
-                  
                       Text(
                         movie.overview ?? "No description available",
                         style: const TextStyle(

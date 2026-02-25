@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_project_api/core/app_color.dart';
+import 'package:movies_project_api/core/favorite_storage.dart';
 import 'package:movies_project_api/core/url_movie.dart';
+import 'package:movies_project_api/model/favorite_trending_model.dart';
 import 'package:movies_project_api/model/trending_model.dart';
 import 'package:movies_project_api/model/tvshow_model.dart';
 import 'package:movies_project_api/view/screen/favoritescreen.dart';
@@ -118,11 +120,19 @@ class Tvshowscreen extends StatelessWidget {
                                   vertical: 12,
                                 ),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Favoritescreen(),
+                             onPressed: () {
+                                FavoriteStorage.add(
+                                  FavoriteModel(
+                                    title: movie.title ?? "",
+                                    posterPath: movie.poster_path ?? "",
+                                  ),
+                                );
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "${movie.title} added to favorites",
+                                    ),
                                   ),
                                 );
                               },
