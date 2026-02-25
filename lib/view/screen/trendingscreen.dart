@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_project_api/core/app_color.dart';
 import 'package:movies_project_api/core/url_movie.dart';
 import 'package:movies_project_api/model/trending_model.dart';
+import 'package:movies_project_api/view/screen/favoritescreen.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final TrendingModel movie;
@@ -22,7 +23,7 @@ class MovieDetailsScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          
+      
           SizedBox(
             width: double.infinity,
             height: height * 0.6,
@@ -32,7 +33,7 @@ class MovieDetailsScreen extends StatelessWidget {
             ),
           ),
 
-          
+    
           Container(
             height: height * 0.6,
             decoration: const BoxDecoration(
@@ -63,7 +64,7 @@ class MovieDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                  
+              
                       Text(
                         movie.title ?? "",
                         style: const TextStyle(
@@ -75,7 +76,7 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
-                   
+                
                       Row(
                         children: [
                           const Icon(Icons.star, color: Colors.amber),
@@ -89,6 +90,57 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 20),
 
+            
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                              ),
+                              onPressed: () {
+                            
+                              },
+                              icon: const Icon(Icons.play_arrow),
+                              label: const Text("Watch Now"),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(color: Colors.white),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Favoritescreen(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.favorite_border,
+                                color: Colors.white,
+                              ),
+                              label: const Text(
+                                "Favorite",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 25),
+
+                
                       const Text(
                         "Overview",
                         style: TextStyle(
@@ -100,6 +152,7 @@ class MovieDetailsScreen extends StatelessWidget {
 
                       const SizedBox(height: 10),
 
+                  
                       Text(
                         movie.overview ?? "No description available",
                         style: const TextStyle(

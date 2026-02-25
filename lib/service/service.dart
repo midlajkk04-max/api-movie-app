@@ -33,23 +33,49 @@ class MovieService {
       throw Exception("Failed to load movies");
     }
   }
- Future<List<UpcomingModel>>fetchupcomingmovie()async{
-  final response =await dio.get(Url.upcoming);
-  if(response.statusCode == 200 && response.data != null){
-    final data = UpcomingModell.fromJson(response.data);
-    return data.results ?? [];
 
-  }else{
-    throw Exception("Failed to load movies");
+  Future<List<UpcomingModel>> fetchupcomingmovie() async {
+    final response = await dio.get(Url.upcoming);
+    if (response.statusCode == 200 && response.data != null) {
+      final data = UpcomingModell.fromJson(response.data);
+      return data.results ?? [];
+    } else {
+      throw Exception("Failed to load movies");
+    }
   }
- }
- Future<List<TvshowModel>>fetchtvshowmovie()async{
-  final response =await dio.get(Url.tvShow);
-  if(response.statusCode ==200 && response.data!= null){
-    final data = TvshowModell.fromJson(response.data);
-    return data.results ?? [];
-  }else{
-    throw Exception("Failed to load movies");
+
+  Future<List<TvshowModel>> fetchtvshowmovie() async {
+    final response = await dio.get(Url.tvShow);
+    if (response.statusCode == 200 && response.data != null) {
+      final data = TvshowModell.fromJson(response.data);
+      return data.results ?? [];
+    } else {
+      throw Exception("Failed to load movies");
+    }
   }
- }
+
+ Future<List<TopbarModell>> searchMovies(String query) async {
+  try {
+    final response = await dio.get(
+      Url.searchMovie,
+      queryParameters: {
+        "api_key": Url.apiKey,
+        "query": query,
+      },
+    );
+
+    if (response.statusCode == 200 && response.data != null) {
+      final List results = response.data["results"];
+
+      return results
+          .map((e) => TopbarModell.fromjson(e))
+          .toList();
+    } else {
+      return [];
+    }
+  } catch (e) {
+    print(e);
+    return [];
+  }
+}
 }

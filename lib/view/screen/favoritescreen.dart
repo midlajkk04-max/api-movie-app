@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Favorite extends StatelessWidget {
-  const Favorite({super.key});
+class Favoritescreen extends StatelessWidget {
+  const Favoritescreen({super.key});
 
   @override
   Widget build(BuildContext context) {

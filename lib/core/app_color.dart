@@ -8,4 +8,7 @@ class AppColor {
     Color(0xff6b0000),
   ];
 
+  static const Color bgColor = Colors.black;
+  static const Color cardColor = Color(0xff1c1c1c);
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_project_api/view/screen/favorite.dart';
-import 'package:movies_project_api/view/screen/homeserch.dart';
+
+import 'package:movies_project_api/view/screen/favoritescreen.dart';
+import 'package:movies_project_api/view/screen/movieserch.dart';
 import 'homescreen.dart';
 
 
@@ -17,8 +18,8 @@ class _MainScreenState extends State<Bottombarscreen> {
 
   final List<Widget> pages = const [
     Homescreen(),
-    Homeserch(),
-    Favorite(),
+    Movieserch(),
+    Favoritescreen(),
   ];
 
   @override
